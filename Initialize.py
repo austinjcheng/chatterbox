@@ -1,5 +1,8 @@
 import string
 from Socket import sendMessage
+
+# Loads the previously sent messages when joining a room
+
 def joinRoom(s):
 	readbuffer = ""
 	Loading = True
