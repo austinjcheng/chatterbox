@@ -13,7 +13,7 @@ for i in range(len(usernames) - 1):
 readbuffer = ""
 
 while True:
-    readbuffer = readbuffer + users(0).recv(1024)
+    readbuffer = readbuffer + users[0].recv(1024)
     temp = string.split(readbuffer, "\n")
     readbuffer = temp.pop()
         
@@ -22,9 +22,9 @@ while True:
         user = getUser(line)
         message = getMessage(line)
         print(user + " typed :" + message)
-        sendMessage(users(0), "Hello World")
+        sendMessage(users(0), raw_input("Enter: "))
     
-
+    
     #commmandFile = open("command.txt", 'r')
     #for line in commandFile:
     #    if line in message:
