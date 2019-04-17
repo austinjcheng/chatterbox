@@ -3,8 +3,8 @@ PORT = 6667
 
 CHANNEL = "butaustinwhy"
 
-#IDENT = "solegitbot"
-#PASS = "oauth:2jur7e3wq9txvvagwbpmp60t7aay74"
+IDENT = "solegitbot"
+PASS = "oauth:2jur7e3wq9txvvagwbpmp60t7aay74"
 
 #HOST = "irc.twitch.tv"
 #PORT = 6667

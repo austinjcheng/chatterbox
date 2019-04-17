@@ -11,10 +11,6 @@ def joinRoom(s):
         temp = string.split(readbuffer, "\n")
         readbuffer = temp.pop()
         
-        print(temp)
-        
-        break
-        
         for line in temp:
             print(line)
             Loading = loadingComplete(line)
