@@ -27,17 +27,39 @@ def refreshMessages():
             user = getUser(line)
             message = getMessage(line)
             print(user + " typed :" + message)
-             
+"""             
 def on_press(key):
+    print(key)
     if key == keyboard.Key.tab:
         currentUserIndex[0] += 1
         if currentUserIndex[0] >= len(users):
             currentUserIndex[0] = 0
         print("Switched user to: " + users[currentUserIndex[0]])
-
+"""
+def on_press(key):
+    try:
+        if key == keyboard.Key.tab:
+            currentUserIndex[0] += 1
+            if currentUserIndex[0] >= len(users):
+                currentUserIndex[0] = 0
+            print("Switched user to: " + usernames[currentUserIndex[0]])
+    except AttributeError:
+        print('special key {0} pressed'.format(
+            key))
+        
+def on_release(key):
+    if key == keyboard.Key.esc:
+        # Stop listener
+        return False
     
+
 messageThread = threading.Thread(target=refreshMessages)
 messageThread.start()
+
+listener = keyboard.Listener(
+    on_press=on_press,
+    on_release=on_release)
+listener.start()
 
 message = ""
 while message.lower() != "exit":
