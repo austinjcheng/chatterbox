@@ -3,7 +3,7 @@ from Socket import sendMessage
 
 # Loads the previously sent messages when joining a room
 
-def joinRoom(s):
+def joinRoom(s, gui):
     readbuffer = ""
     Loading = True
     while Loading:
@@ -12,7 +12,7 @@ def joinRoom(s):
         readbuffer = temp.pop()
         
         for line in temp:
-            print(line)
+            gui.displayMessage(line)
             Loading = loadingComplete(line)
     sendMessage(s, "Successfully joined chat")
     

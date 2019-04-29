@@ -4,20 +4,48 @@ from Socket import openSocket, sendMessage
 from Initialize import joinRoom
 from Settings import usernames
 from pynput import keyboard
+from GUI import *
 import threading
-from Tkinter import *
 
+
+gui = GUI()
+gui.startGUI()
 
 currentUserIndex = [0]
 currentUserIndex[0] = 0
 
-    # Initialize the connection with the given parameters
+# Initialize the connection with the given parameters
 users = [] # List of logged in users
 for num, name in enumerate(usernames):
     users.append(openSocket(num))
-    joinRoom(users[num])
-        
+    joinRoom(users[num], gui)
+    
+    
 
+
+"""
+root = Tk()
+
+scrollbar = Scrollbar(root)
+entry = Entry(root)
+chat = Text(root, height=2, width=30)
+
+scrollbar.pack(side=RIGHT, fill=Y)
+chat.pack(side=LEFT, fill=Y)
+
+scrollbar.config(command=chat.yview)
+chat.config(yscrollcommand=scrollbar.set)
+
+entry.grid(row=1, column=1)
+chat.grid(row=0, column=1)
+
+
+mainloop()
+#entry.bind('<Tab>', hello)
+
+#Button(root, text='Enter', command=sendMessage).grid(row=3, column=1, sticky=W, pady=4)
+
+"""
 
 def refreshMessages():
     readbuffer = ""
@@ -27,10 +55,10 @@ def refreshMessages():
         readbuffer = temp.pop()
             
         for line in temp:
-            print(line)
+            gui.displayMessage(line)
             user = getUser(line)
             message = getMessage(line)
-            print(user + " typed :" + message)
+            gui.displayMessage(user + " typed :" + message)
 """             
 def on_press(key):
     print(key)
@@ -60,24 +88,8 @@ messageThread = threading.Thread(target=refreshMessages)
 messageThread.start()
 
 
-def sendMessage():
-    sendMessage(entry.get())
-    entry.delete(0, END)
 
-root = Tk()
-
-entry = Entry(root)
-chat = Text(root, height=2, width=30)
-
-entry.grid(row=1, column=1)
-chat.grid(row=0, column=1)
-
-#entry.bind('<Tab>', hello)
-
-Button(root, text='Enter', command=sendMessage).grid(row=3, column=1, sticky=W, pady=4)
-
-mainloop( )
-    """
+"""
     listener = keyboard.Listener(
         on_press=on_press,
         on_release=on_release)
@@ -87,10 +99,7 @@ mainloop( )
     while message.lower() != "exit":
         message = raw_input("Enter: ")
         sendMessage(users[currentUserIndex[0]], message)
-        """
-
-
-
+"""
 
 
             
