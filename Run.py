@@ -9,7 +9,8 @@ import threading
 
 
 gui = GUI()
-gui.startGUI()
+guiThread = threading.Thread(target=gui.startGUI)
+guiThread.start()
 
 currentUserIndex = [0]
 currentUserIndex[0] = 0
