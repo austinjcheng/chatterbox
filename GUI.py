@@ -1,6 +1,7 @@
 from Tkinter import *
 from Socket import sendMessage
-import threading
+#from Run import getUsers, getCurrentUserIndex
+
 
 """
 def sendMessage():
@@ -30,6 +31,7 @@ class GUI:
         self.scrollbar = Scrollbar(self.root)
         self.chat = Text(self.root, height=4, width=50)
         self.entry = Entry(self.root)
+        self.entry.bind("<Return>", self.sendMessage)
         self.entry.pack(side=BOTTOM)
                     
         self.scrollbar.pack(side=RIGHT, fill=Y)
@@ -43,10 +45,15 @@ class GUI:
         
         
     def displayMessage(self, string):
-        self.chat.insert(END, string)
+        self.chat.insert(END, string + "\n")
     
-    def sendMessage(self):
-        Socket.sendMessage(self.entry.get())
+    def sendMessage(self, string):
+        import Run
+        
+        users = Run.getUsers()
+        currentUserIndex = Run.getCurrentUserIndex()
+        
+        sendMessage(users[currentUserIndex[0]], self.entry.get())
         self.entry.delete(0, END)
 
 
