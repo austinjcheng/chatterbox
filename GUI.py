@@ -1,5 +1,5 @@
 from Tkinter import *
-from Socket import sendMessage
+from Socket import sendDefaultMessage
 #from Run import getUsers, getCurrentUserIndex
 
 
@@ -48,12 +48,7 @@ class GUI:
         self.chat.insert(END, string + "\n")
     
     def sendMessage(self, string):
-        import Run
-        
-        users = Run.getUsers()
-        currentUserIndex = Run.getCurrentUserIndex()
-        
-        sendMessage(users[currentUserIndex[0]], self.entry.get())
+        sendDefaultMessage(self.entry.get())
         self.entry.delete(0, END)
 
 

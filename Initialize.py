@@ -1,5 +1,6 @@
 import string
-from Socket import sendMessage
+from Socket import sendMessage, openSocket
+from Settings import usernames
 
 # Loads the previously sent messages when joining a room
 
@@ -21,3 +22,21 @@ def loadingComplete(line):
         return False
     else:
         return True
+    
+def createUsers():
+    global currentUserIndex
+    currentUserIndex = 0
+    
+    global users
+    users = []
+    for num, name in enumerate(usernames):
+        users.append(openSocket(num))
+    
+def switchUser():
+    currentUserIndex += 1
+    if currentUserIndex >= users.length:
+        currentUserIndex = 0
+        
+def startRooms(gui):
+    for num, name in enumerate(usernames):
+        joinRoom(users[num], gui)
