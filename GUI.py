@@ -1,5 +1,7 @@
 from Tkinter import *
 from Socket import sendDefaultMessage
+from Initialize import switchUser
+#from Initialize import currentUserIndex
 #from Run import getUsers, getCurrentUserIndex
 
 
@@ -29,9 +31,10 @@ class GUI:
     def __init__(self):
         self.root = Tk()
         self.scrollbar = Scrollbar(self.root)
-        self.chat = Text(self.root, height=4, width=50)
+        self.chat = Text(self.root, height=40, width=50)
         self.entry = Entry(self.root)
         self.entry.bind("<Return>", self.sendMessage)
+        self.entry.bind("<Tab>", switchUser)
         self.entry.pack(side=BOTTOM)
                     
         self.scrollbar.pack(side=RIGHT, fill=Y)
@@ -50,6 +53,9 @@ class GUI:
     def sendMessage(self, string):
         sendDefaultMessage(self.entry.get())
         self.entry.delete(0, END)
+        
+    #def switchUser(self):
+        
 
 
 

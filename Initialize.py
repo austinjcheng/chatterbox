@@ -32,10 +32,14 @@ def createUsers():
     for num, name in enumerate(usernames):
         users.append(openSocket(num))
     
-def switchUser():
+def switchUser(self):
+    print "Current user is: " + usernames[currentUserIndex]
+    global currentUserIndex
     currentUserIndex += 1
-    if currentUserIndex >= users.length:
+    if currentUserIndex >= len(users):
         currentUserIndex = 0
+    print "New user is: " + usernames[currentUserIndex]
+    
         
 def startRooms(gui):
     for num, name in enumerate(usernames):
