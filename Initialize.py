@@ -3,7 +3,6 @@ from Socket import sendMessage, openSocket
 from Settings import usernames
 
 # Loads the previously sent messages when joining a room
-
 def joinRoom(s, gui):
     readbuffer = ""
     Loading = True
@@ -39,6 +38,7 @@ def switchUser(self):
     if currentUserIndex >= len(users):
         currentUserIndex = 0
     print "New user is: " + usernames[currentUserIndex]
+    return "break"
     
         
 def startRooms(gui):
