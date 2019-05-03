@@ -38,9 +38,13 @@ def switchUser(self):
     if currentUserIndex >= len(users):
         currentUserIndex = 0
     print "New user is: " + usernames[currentUserIndex]
-    return "break"
-    
         
 def startRooms(gui):
     for num, name in enumerate(usernames):
         joinRoom(users[num], gui)
+        
+        
+        
+        
+        
+        
