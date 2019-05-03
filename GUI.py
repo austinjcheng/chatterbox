@@ -35,13 +35,15 @@ class GUI:
         self.entry = Entry(self.root)
         self.entry.bind("<Return>", self.sendMessage)
         self.entry.bind("<Tab>", switchUser)
-        self.entry.pack(side=BOTTOM)
+        self.entry.pack(side=BOTTOM, fill=X, expand=YES)
                     
         self.scrollbar.pack(side=RIGHT, fill=Y)
-        self.chat.pack(side=LEFT, fill=Y)
+        #self.chat.pack(side=LEFT, fill=Y)
+        self.chat.pack(side=LEFT, fill=BOTH, expand=YES)
                     
         self.scrollbar.config(command=self.chat.yview)
         self.chat.config(yscrollcommand=self.scrollbar.set)
+        
 
     def startGUI(self):
         mainloop()
